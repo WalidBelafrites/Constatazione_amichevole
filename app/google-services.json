@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "325194877079",
+    "project_id": "constatazione-amichevole",
+    "storage_bucket": "constatazione-amichevole.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:325194877079:android:3bcd605abeddd229e2c1d2",
+        "android_client_info": {
+          "package_name": "com.example.constatazione_amichevole"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVskY0nKj-wQ2dLZlH0H6Pjac8tY8ggnw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
