@@ -15,6 +15,7 @@ fun SetupNavGraph(navController : NavHostController){
         composable(route = Screen.CreaAccount.route){ CreaAccount(navController = navController) }
         composable(route = Screen.HomePage.route){ HomePage(navController = navController) }
         composable(route = Screen.GestioneMacchine.route){ GestioneMacchine(navController = navController) }
+        composable(route = Screen.CreaConstatazione.route){ CreaConstatazione(navController = navController) }
 
     }
 }
