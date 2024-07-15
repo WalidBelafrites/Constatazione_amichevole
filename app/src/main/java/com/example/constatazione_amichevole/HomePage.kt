@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.Column
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -35,13 +37,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.room.util.createCancellationSignal
 import com.example.constatazione_amichevole.R
+import com.example.constatazione_amichevole.Screen
 
 @Composable
 fun HomePage(navController: NavController) {
 
-    var dos = remember {
-        mutableStateOf(0)
-    }
+    val texts = listOf("Gestisci Macchine", "Crea Costatazione", "Gestisci Costatazioni", "Supporto")
+    val routes = listOf(Screen.GestioneMacchine.route,"Screen.CreaCostatazione.route", "Screen.GestisciCostatazioni.route" , "Screen.Supporto.route")
+
 
     val ff = FontFamily(
         Font(R.font.lexend_bold, FontWeight.Bold),
@@ -54,26 +57,33 @@ fun HomePage(navController: NavController) {
         Font(R.font.lexend_extrabold, FontWeight.ExtraBold),
         Font(R.font.lexend_black, FontWeight.Black)
         )
-    Box(contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()) {
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2)
+
+
+    Column(horizontalAlignment = Alignment.CenterHorizontally
+        , verticalArrangement = Arrangement.SpaceAround
+        , modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
         ) {
-            items(4) {
-                dos.value = it + 1
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(1)
+        ) {
+            items(texts.size) { index ->
                 Box(
                     modifier = Modifier
                         .padding(8.dp)
-                        .aspectRatio(1f)
-                        .clip(RoundedCornerShape(16.dp))
-                        .background(Color.Magenta)
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(Color.Blue)
+                        .clickable { navController.navigate(route = routes[index]) }
                     ,contentAlignment = Alignment.Center
                 ){
-                    Text(text = "Go to page ${dos.value}",
+                    Text(text = texts[index],
+                         color = Color.White,
                          fontSize = 30.sp,
                          fontFamily = ff
                         )
                 }
+
             }
         }
     }

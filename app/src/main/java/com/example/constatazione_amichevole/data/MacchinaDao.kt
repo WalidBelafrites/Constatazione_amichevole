@@ -1,11 +1,14 @@
 package com.example.constatazione_amichevole.data
 
+
+import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import kotlinx.coroutines.flow.Flow
 
+
+@Dao
 interface MacchinaDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -14,9 +17,9 @@ interface MacchinaDao {
     @Delete
     suspend fun deleteMacchina(macchina: Macchina)
 
-    @Query(value = "SELECT * FROM macchina WHERE id = :id")
+    @Query(value = "SELECT * FROM macchine WHERE id = :id")
     suspend fun getMacchinaById(id: Int): Macchina?
 
-    @Query(value = "SELECT * FROM macchina")
-    fun getAllMacchina(): Flow<List<Macchina>>
+    @Query(value = "SELECT * FROM macchine")
+    fun getAllMacchina(): List<Macchina>
 }

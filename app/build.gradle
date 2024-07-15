@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
+
 }
 
 android {
@@ -49,6 +50,8 @@ android {
     buildToolsVersion '34'
 }
 
+apply plugin: 'kotlin-kapt'
+
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.13.1'
@@ -63,6 +66,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.8.2"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3"
     implementation 'com.google.firebase:firebase-auth:23.0.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.1'
+    implementation 'androidx.compose.runtime:runtime-livedata:1.6.8'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
@@ -70,7 +75,14 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
 
-    def room_version = "2.5.0"
+
+    def room_version = "2.6.1"
+
+    implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+
+
+
 }
