@@ -28,6 +28,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.constatazione_amichevole.data.FirebaseAuthViewModel
 import kotlinx.coroutines.launch
 import java.util.Calendar
 
@@ -38,7 +39,7 @@ fun CreaAccount(navController: NavController){
     val context = LocalContext.current
     val application = remember { context.applicationContext as Application }
 
-
+    val authViewModel: FirebaseAuthViewModel = viewModel()
     val coroutineScope = rememberCoroutineScope()
 
     var nome by remember {
@@ -130,8 +131,9 @@ fun CreaAccount(navController: NavController){
 
         Spacer(modifier = Modifier.height(6.dp))
 
-        Button(  onClick = {
-        }  ) {
+        Button(onClick = { authViewModel.signUp(email, password) {
+            navController.navigate(route = Screen.HomePage.route)
+        } }) {
             Text(text = "Crea Account")
         }
     }
