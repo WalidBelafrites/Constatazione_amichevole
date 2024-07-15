@@ -14,6 +14,7 @@ import androidx.room.RoomDatabase
 abstract class UserDatabase : RoomDatabase() {
 
     abstract val macchinaDao: MacchinaDao
+    abstract val constatazioneDao: ConstatazioneDao
 
     companion object {
         @Volatile

@@ -43,7 +43,7 @@ import com.example.constatazione_amichevole.Screen
 fun HomePage(navController: NavController) {
 
     val texts = listOf("Gestisci Macchine", "Crea Costatazione", "Gestisci Costatazioni", "Supporto")
-    val routes = listOf(Screen.GestioneMacchine.route,"Screen.CreaCostatazione.route", "Screen.GestisciCostatazioni.route" , "Screen.Supporto.route")
+    val routes = listOf(Screen.GestioneMacchine.route,Screen.CreaConstatazione.route, "Screen.GestisciCostatazioni.route" , "Screen.Supporto.route")
 
 
     val ff = FontFamily(
