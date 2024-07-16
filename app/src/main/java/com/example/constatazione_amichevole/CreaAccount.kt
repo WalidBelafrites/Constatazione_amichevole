@@ -59,7 +59,7 @@ fun CreaAccount(navController: NavController){
         mutableStateOf("")
     }
 
-    var dateOfBirth by remember { mutableStateOf("") }
+    /*var dateOfBirth by remember { mutableStateOf("") }
     val calendar = Calendar.getInstance()
 
     val datePickerDialog = DatePickerDialog(
@@ -67,7 +67,7 @@ fun CreaAccount(navController: NavController){
         { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
             dateOfBirth = "$dayOfMonth/${month + 1}/$year"
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)
-    )
+    )*/
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -104,13 +104,13 @@ fun CreaAccount(navController: NavController){
 
         Spacer(modifier = Modifier.height(6.dp))
 
-        OutlinedTextField(
+        /*OutlinedTextField(
             value = dateOfBirth,
             onValueChange = { dateOfBirth = it },
             label = { (Text(text = "Data di nascità"))}
             , modifier = Modifier.clickable { datePickerDialog.show() }
             , enabled = false
-        )
+        )*/
 
         Spacer(modifier = Modifier.height(6.dp))
 

@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [Macchina::class, Constatazione::class],
+    entities = [Macchina::class, Constatazione::class, Profilo::class],
     version = 1
 )
 
@@ -15,6 +15,7 @@ abstract class UserDatabase : RoomDatabase() {
 
     abstract val macchinaDao: MacchinaDao
     abstract val constatazioneDao: ConstatazioneDao
+    abstract val profiloDao: ProfiloDao
 
     companion object {
         @Volatile
