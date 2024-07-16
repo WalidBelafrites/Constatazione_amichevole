@@ -162,15 +162,15 @@ fun ConstatazioneItem(cai: Constatazione, onEdit: (Constatazione) -> Unit, onDel
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "phone number: ${cai.phone_number}",
+                    text = "Numero del conducente: ${cai.phone_number}",
                     fontSize = 16.sp
                 )
                 Text(
-                    text = "insurance: ${cai.assurance}",
+                    text = "Numero Assicuranza: ${cai.assurance}",
                     fontSize = 16.sp
                 )
                 Text(
-                    text = "incident description: ${cai.accident_description}",
+                    text = "Descrizione dell'incidente: ${cai.accident_description}",
                     fontSize = 16.sp
                 )
 
