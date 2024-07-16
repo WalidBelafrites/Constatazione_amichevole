@@ -44,7 +44,7 @@ android {
     }
     packagingOptions {
         resources {
-            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+            excludes += '/META-INF/DEPENDENCIES'
         }
     }
     buildToolsVersion '34'
@@ -68,6 +68,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:23.0.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.1'
     implementation 'androidx.compose.runtime:runtime-livedata:1.6.8'
+    implementation 'org.apache.pdfbox:pdfbox:2.0.24'
+    implementation 'org.apache.pdfbox:pdfbox-tools:2.0.24'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'

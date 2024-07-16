@@ -3,7 +3,9 @@ package com.example.constatazione_amichevole
 import MacchinaViewModel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+
 import androidx.compose.foundation.layout.Column
+
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -47,6 +49,7 @@ import androidx.navigation.NavHostController
 import com.example.constatazione_amichevole.data.Constatazione
 import com.example.constatazione_amichevole.data.ConstatazioneViewModel
 import com.example.constatazione_amichevole.data.Macchina
+import generatePdf
 
 
 @Composable
@@ -62,15 +65,32 @@ fun CreaConstatazione(
     var showAddDialog by remember { mutableStateOf(false) }
     var showEditDialog by remember { mutableStateOf<Constatazione?>(null) }
     val macchine by macchinaViewModel.macchine.observeAsState(emptyList())
+    var constatazioneToAddOrUpdate by remember { mutableStateOf<Constatazione?>(null) }
+
+
+
 
 
     if (showAddDialog) {
         ConstatazioneDialog(
             macchine = macchine,
             onDismiss = { showAddDialog = false },
-            onConfirm = { name, surname, phone_number, assurance, accident_description , macchinaId ->
-                viewModel.insert(Constatazione(name = name, surname = surname, phone_number = phone_number, assurance = assurance, accident_description
-                = accident_description, macchinaId = macchinaId))
+            onConfirm = { name, surname, phone_number, assurance, accident_description , macchinaId, macchinaNome, nameB, surnameB, phone_numberB, assuranceB ->
+                val constatazione = Constatazione(
+                    name = name,
+                    surname = surname,
+                    phone_number = phone_number,
+                    assurance = assurance,
+                    accident_description = accident_description,
+                    macchinaId = macchinaId,
+                    macchinaNome = macchinaNome,
+                    nameB = nameB,
+                    surnameB = surnameB,
+                    phone_numberB = phone_numberB,
+                    assuranceB = assuranceB
+                )
+                viewModel.insert(constatazione)
+                constatazioneToAddOrUpdate = constatazione
                 showAddDialog = false
             }
         )
@@ -78,13 +98,28 @@ fun CreaConstatazione(
 
     if (showEditDialog != null) {
         ConstatazioneDialog(
-            cai = showEditDialog,
-            macchine = macchine, // Pass macchine list
-            onDismiss = { showEditDialog = null },
-            onConfirm = { name, surname, phone_number, assurance, accident_description, macchinaId ->
-                viewModel.update(Constatazione(id = showEditDialog!!.id, name = name, surname = surname, phone_number = phone_number, assurance = assurance, accident_description = accident_description, macchinaId = macchinaId))
+            showEditDialog,
+            macchine,
+            { showEditDialog = null },
+            { name, surname, phone_number, assurance, accident_description, macchinaId, macchinaNome, nameB, surnameB, phone_numberB, assuranceB ->
+                val constatazione = Constatazione(
+                    id = showEditDialog!!.id,
+                    name = name,
+                    surname = surname,
+                    phone_number = phone_number,
+                    assurance = assurance,
+                    accident_description = accident_description,
+                    macchinaId = macchinaId,
+                    macchinaNome = macchinaNome,
+                    nameB = nameB,
+                    surnameB = surnameB,
+                    phone_numberB = phone_numberB,
+                    assuranceB = assuranceB
+                )
+                viewModel.update(constatazione)
+                constatazioneToAddOrUpdate = constatazione
                 showEditDialog = null
-            }
+            },
         )
     }
 
@@ -93,7 +128,7 @@ fun CreaConstatazione(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Manage Constatazione") },
+                title = { Text("Gestisci Le Constatazioni") },
                 actions = {
                     IconButton(onClick = { showAddDialog = true }) {
                         Icon(Icons.Filled.Add, contentDescription = "Aggiungere Constatazione")
@@ -118,8 +153,25 @@ fun CreaConstatazione(
                 onDelete = { constatazione -> viewModel.delete(constatazione) }
             )
         }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Button(
+            onClick = {
+                // Check if constatazioneToAddOrUpdate is not null
+                constatazioneToAddOrUpdate?.let { constatazione ->
+
+                    generatePdf(constatazione, "C:\\Users\\walid\\OneDrive\\Bureau\\Constatazione_amichevole\\app\\src\\main\\java\\com\\example\\constatazione_amichevole\\utils\\output.pdf")
+                }
+            }
+        ) {
+            Text("Genera PDF")
+        }
     }
 }
+
+
+
 
 @Composable
 fun ConstatazioneList(cais: List<Constatazione>, onEdit: (Constatazione) -> Unit, onDelete: (Constatazione) -> Unit) {
@@ -190,7 +242,7 @@ fun ConstatazioneDialog(
     cai: Constatazione? = null,
     macchine: List<Macchina>,
     onDismiss: () -> Unit,
-    onConfirm: (String, String, String,String,String, Int?) -> Unit
+    onConfirm: (String, String, String,String,String, Int?, String?, String,String,String,String) -> Unit,
 ) {
 
     var name by remember { mutableStateOf(cai?.name ?: "") }
@@ -199,6 +251,10 @@ fun ConstatazioneDialog(
     var assurance by remember { mutableStateOf(cai?.assurance ?: "") }
     var accident_description by remember { mutableStateOf(cai?.accident_description ?: "") }
     var selectedMacchina by remember { mutableStateOf<Macchina?>(null) }
+    var nameB by remember { mutableStateOf(cai?.nameB ?: "") }
+    var surnameB by remember { mutableStateOf(cai?.surnameB ?: "") }
+    var phone_numberB by remember { mutableStateOf(cai?.phone_numberB ?: "") }
+    var assuranceB by remember { mutableStateOf(cai?.assuranceB ?: "") }
 
     var expanded by remember { mutableStateOf(true) }
 
@@ -264,6 +320,27 @@ fun ConstatazioneDialog(
                         }
                     }
                 }
+
+                TextField(
+                    value = nameB,
+                    onValueChange = { nameB = it },
+                    label = { Text("Nome B") }
+                )
+                TextField(
+                    value = surnameB,
+                    onValueChange = { surnameB = it },
+                    label = { Text("Cognome B") }
+                )
+                TextField(
+                    value = phone_numberB,
+                    onValueChange = { phone_numberB = it },
+                    label = { Text("Numero del conducente B") }
+                )
+                TextField(
+                    value = assuranceB,
+                    onValueChange = { assuranceB = it },
+                    label = { Text("Numero Assicuranza B") }
+                )
             }
         },
 
@@ -271,7 +348,8 @@ fun ConstatazioneDialog(
             Button(
                 onClick = {
                     if (name.isNotBlank() && surname.isNotBlank() && phone_number.isNotBlank() && assurance.isNotBlank() && accident_description.isNotBlank()) {
-                        onConfirm(name, surname, phone_number, assurance, accident_description, selectedMacchina?.id)
+                        onConfirm(name, surname, phone_number, assurance, accident_description, selectedMacchina?.id, selectedMacchina?.name, nameB,surnameB, phone_numberB, assuranceB)
+
                     }
                 }
             ) {

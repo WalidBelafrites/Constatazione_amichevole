@@ -12,5 +12,10 @@ data class Constatazione (
     val accident_description: String,
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
-    val macchinaId: Int? = null
+    val macchinaId: Int? = null,
+    val macchinaNome: String? = "",
+    val nameB: String = "",
+    val surnameB: String = "",
+    val phone_numberB: String = "",
+    val assuranceB: String = ""
 )
