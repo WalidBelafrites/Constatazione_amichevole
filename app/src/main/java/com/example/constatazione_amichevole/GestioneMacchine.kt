@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.constatazione_amichevole.data.Constatazione
 import com.example.constatazione_amichevole.data.Macchina
 
 
@@ -40,6 +41,17 @@ fun GestioneMacchine(
             onConfirm = { name, year, color ->
                 viewModel.insert(Macchina(name = name, year = year.toInt(), color = color))
                 showAddDialog = false
+            }
+        )
+    }
+
+    if (showEditDialog != null) {
+        VehicleDialog(
+            vehicle = showEditDialog,
+            onDismiss = { showEditDialog = null },
+            onConfirm = { name, year, color ->
+                viewModel.update(Macchina(id = showEditDialog!!.id, name = name, year = showEditDialog!!.year, color = showEditDialog!!.color))
+                showEditDialog = null
             }
         )
     }

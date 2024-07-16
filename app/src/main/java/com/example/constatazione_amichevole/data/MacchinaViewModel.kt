@@ -31,6 +31,10 @@ class MacchinaViewModel(application: Application) : AndroidViewModel(application
         loadAllMacchine()
     }
 
+    fun update(macchina: Macchina) = viewModelScope.launch {
+        withContext(Dispatchers.IO){ repository.updateMacchina(macchina) }
+        loadAllMacchine()
+    }
 
     private fun loadAllMacchine() = viewModelScope.launch {
         withContext(Dispatchers.IO){ _macchine.postValue(repository.getAllMacchina())}

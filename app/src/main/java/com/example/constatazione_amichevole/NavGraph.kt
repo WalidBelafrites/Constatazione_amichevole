@@ -9,13 +9,15 @@ import androidx.navigation.NavController
 
 
 @Composable
-fun SetupNavGraph(navController : NavHostController){
-    NavHost(navController, startDestination = Screen.SchermoLogin.route){
-        composable(route = Screen.SchermoLogin.route){ SchermoLogin(navController = navController)}
-        composable(route = Screen.CreaAccount.route){ CreaAccount(navController = navController) }
-        composable(route = Screen.HomePage.route){ HomePage(navController = navController) }
-        composable(route = Screen.GestioneMacchine.route){ GestioneMacchine(navController = navController) }
-        composable(route = Screen.CreaConstatazione.route){ CreaConstatazione(navController = navController) }
+fun SetupNavGraph(navController : NavHostController) {
+    NavHost(navController, startDestination = Screen.SchermoLogin.route) {
+        composable(route = Screen.SchermoLogin.route) { SchermoLogin(navController = navController) }
+        composable(route = Screen.CreaAccount.route) { CreaAccount(navController = navController) }
+        composable(route = Screen.HomePage.route) { HomePage(navController = navController) }
+        composable(route = Screen.GestioneMacchine.route) { GestioneMacchine(navController = navController) }
+        composable(route = Screen.CreaConstatazione.route) { CreaConstatazione(navController = navController) }
+        composable(route = Screen.Profilo.route) { Profilo(navController = navController) }
+
 
     }
 }

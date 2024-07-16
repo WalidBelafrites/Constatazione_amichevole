@@ -7,5 +7,7 @@ interface ConstatazioneRepository {
 
     suspend fun getConstatazioneById(id: Int): Constatazione?
 
+    suspend fun updateConstatazione(constatazione: Constatazione)
+
     suspend fun getAllConstatazione(): List<Constatazione>
 }

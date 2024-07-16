@@ -10,8 +10,11 @@ class ConstatazioneRepositoryImpl(private val constatazioneDao: ConstatazioneDao
         constatazioneDao.deleteConstatazione(constatazione)
     }
 
+    suspend fun updateConstatazione(constatazione: Constatazione) {
+        constatazioneDao.updateConstatazione(constatazione)
+    }
 
-    suspend fun getAllConstatazione(): List<Constatazione> {
+    fun getAllConstatazione(): List<Constatazione> {
         return constatazioneDao.getAllConstatazione()
     }
 

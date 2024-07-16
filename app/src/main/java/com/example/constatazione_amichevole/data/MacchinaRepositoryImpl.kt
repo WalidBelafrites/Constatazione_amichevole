@@ -16,6 +16,10 @@ class MacchinaRepositoryImpl(private val macchinaDao: MacchinaDao) {
         return macchinaDao.getAllMacchina()
     }
 
+    suspend fun updateMacchina(macchina: Macchina){
+        macchinaDao.updateMacchina(macchina)
+    }
+
     suspend fun getMacchinaById(id: Int): Macchina? {
         return macchinaDao.getMacchinaById(id)
     }

@@ -42,8 +42,8 @@ import com.example.constatazione_amichevole.Screen
 @Composable
 fun HomePage(navController: NavController) {
 
-    val texts = listOf("Gestisci Macchine", "Crea Costatazione", "Gestisci Costatazioni", "Supporto")
-    val routes = listOf(Screen.GestioneMacchine.route,Screen.CreaConstatazione.route, "Screen.GestisciCostatazioni.route" , "Screen.Supporto.route")
+    val texts = listOf("Gestisci Macchine", "Crea e Gestisci Costatazione", "Profilo", "Logout")
+    val routes = listOf(Screen.GestioneMacchine.route,Screen.CreaConstatazione.route, Screen.Profilo.route , "Screen.Supporto.route")
 
 
     val ff = FontFamily(

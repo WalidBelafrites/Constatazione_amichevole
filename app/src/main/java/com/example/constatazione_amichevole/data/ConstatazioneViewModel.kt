@@ -17,6 +17,7 @@ class ConstatazioneViewModel(application: Application) : AndroidViewModel(applic
     private val _constatazione = MutableLiveData<List<Constatazione>>()
     val constatazione: LiveData<List<Constatazione>> get() = _constatazione
 
+
     init {
         val constatazioneDao = UserDatabase.getDatabase(application).constatazioneDao
         repository = ConstatazioneRepositoryImpl(constatazioneDao)
@@ -30,6 +31,11 @@ class ConstatazioneViewModel(application: Application) : AndroidViewModel(applic
 
     fun delete(constatazione: Constatazione) = viewModelScope.launch {
         withContext(Dispatchers.IO){ repository.deleteConstatazione(constatazione) }
+        loadAllConstatazione()
+    }
+
+    fun update(constatazione: Constatazione) = viewModelScope.launch {
+        withContext(Dispatchers.IO){ repository.updateConstatazione(constatazione) }
         loadAllConstatazione()
     }
 

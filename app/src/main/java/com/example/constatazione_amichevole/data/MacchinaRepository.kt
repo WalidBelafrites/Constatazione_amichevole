@@ -1,7 +1,6 @@
 package com.example.constatazione_amichevole.data
 
-import androidx.lifecycle.MutableLiveData
-import kotlinx.coroutines.flow.Flow
+
 
 interface MacchinaRepository {
 
@@ -10,6 +9,8 @@ interface MacchinaRepository {
     suspend fun deleteMacchina(macchina: Macchina)
 
     suspend fun getMacchinaById(id: Int): Macchina?
+
+    suspend fun updateMacchina(macchina: Macchina)
 
     suspend fun getAllMacchina(): List<Macchina>
 
